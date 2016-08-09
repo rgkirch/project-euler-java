@@ -8,7 +8,7 @@ public class p107 {
 		try {
 			FileReader reader = new FileReader("p107_network.txt");
 		} catch (FileNotFoundException e) {
-			// code
+			System.out.println("Could not open file.");
 		}
 		System.out.println("end");
 	}
