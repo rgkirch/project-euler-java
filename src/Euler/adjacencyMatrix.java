@@ -1,8 +1,5 @@
 package Euler;
 
-import java.io.File;
-import java.util.Scanner;
-
 public class adjacencyMatrix
 {
 	int dimension;
