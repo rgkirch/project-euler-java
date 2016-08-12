@@ -3,19 +3,34 @@ package Euler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Network
 {
 	int dimension;
 	HashMap<Vertex, HashSet<Edge>> networkData;
 
-	public Network(int dimension, ArrayList<Double> networkData)
+	public Network(int dimension, ArrayList<Double> edgeWeights)
 	{
 		this.dimension = dimension;
 		this.networkData = new HashMap<Vertex, HashSet<Edge>>();
-		// no duplicate edges
-		// TODO - make the hashmap from the list of double
+		for(int vertexIndex = 0; vertexIndex < dimension; ++vertexIndex)
+		{
+			Vertex vertexOne = new Vertex(vertexIndex);
+			for(int i = 0; i < dimension; ++i)
+			{
+				Double weight = edgeWeights.get(vertexIndex * dimension + i);
+				if(weight != Double.NaN)
+				{
+					Edge edge = new Edge(weight, vertexOne, new Vertex(i));
+					if(this.networkData.get(vertexOne) == null)
+					{
+						this.networkData.put(vertexOne, new HashSet<Edge>());
+					}
+					HashSet<Edge> adjacentEdges = this.networkData.get(vertexOne);
+					adjacentEdges.add(edge);
+				}
+			}
+		}
 	}
 
 	public String toString()
@@ -33,22 +48,28 @@ public class Network
 		return this.getEdge(x, y).weight;
 	}
 	
-	public Edge getEdge(Vertex x, Vertex y) {
-		HashSet<Edge> edges = this.networkData.get(x);
-		for(Edge edge : edges) {
-			HashSet<Vertex> difference = (HashSet<Vertex>) edge.verticies.clone();
+	public Edge getEdge(Vertex x, Vertex y)
+	{
+		HashMap<Vertex, HashSet<Edge>> networkData = this.networkData;
+		HashSet<Edge> edges = networkData.get(x);
+		for(Edge edge : edges)
+		{
+			HashSet<Vertex> difference = new HashSet<Vertex>(edge.verticies);
 			difference.remove(x);
-			if(difference.contains(y)) {
+			if(difference.contains(y))
+			{
 				return edge;
 			}
 		}
-		// does not return edge if edge not found
+		throw new EdgeNotFound(x, y);
 	}
 	
-	public ArrayList<Vertex> connectedVerticies(Vertex vertex) {
+	public ArrayList<Vertex> connectedVerticies(Vertex vertex)
+	{
 		int start = vertex.getId() * this.dimension;
 		int end = start + this.dimension;
-		for(int i = start; i < end; i++) {
+		for(int i = start; i < end; i++)
+		{
 		}
 		return new ArrayList<>();
 	}
