@@ -2,7 +2,9 @@ package p107;
 
 import java.io.FileNotFoundException;
 
+import Euler.EdgeNotFound;
 import Euler.Network;
+import Euler.Vertex;
 
 public class p107 {
 	public static void main(String[] args) {
@@ -17,6 +19,12 @@ public class p107 {
 		if(network != null)
 		{
 			System.out.println(network);
+			try
+			{
+				network.getEdge(new Vertex(0), new Vertex(1));
+			} catch (EdgeNotFound e) {
+				System.out.println("edge not found");
+			}
 		}
 	}
 }

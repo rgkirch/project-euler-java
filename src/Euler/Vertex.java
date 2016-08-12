@@ -14,5 +14,8 @@ public class Vertex {
 	public int compareTo(Vertex v) {
 		return Integer.compare(this.id, v.id);
 	}
-
+	
+	public String toString() {
+		return String.valueOf(id);
+	}
 }

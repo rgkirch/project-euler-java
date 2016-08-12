@@ -1,5 +1,6 @@
 package Euler;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Edge {
@@ -13,4 +14,8 @@ public class Edge {
 		this.verticies.add(two);
 	}
 	
+	public String toString() {
+		ArrayList<Vertex> verticies = new ArrayList<>(this.verticies);
+		return "(" + weight + ", (" + verticies.get(0) + ", " + verticies.get(1) + "))";
+	}
 }

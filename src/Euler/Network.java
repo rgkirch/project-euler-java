@@ -11,6 +11,7 @@ public class Network
 
 	public Network(int dimension, ArrayList<Double> edgeWeights)
 	{
+		System.out.println("Network constructor.");
 		this.dimension = dimension;
 		this.networkData = new HashMap<Vertex, HashSet<Edge>>();
 		for(int vertexIndex = 0; vertexIndex < dimension; ++vertexIndex)
@@ -43,15 +44,19 @@ public class Network
 		return builder.toString();
 	}
 	
-	public Double edgeWeight(Vertex x, Vertex y)
+	public Double edgeWeight(Vertex x, Vertex y) throws EdgeNotFound
 	{
 		return this.getEdge(x, y).weight;
 	}
 	
-	public Edge getEdge(Vertex x, Vertex y)
+	public Edge getEdge(Vertex x, Vertex y) throws EdgeNotFound
 	{
 		HashMap<Vertex, HashSet<Edge>> networkData = this.networkData;
 		HashSet<Edge> edges = networkData.get(x);
+		if(edges == null)
+		{
+			throw new EdgeNotFound();
+		}
 		for(Edge edge : edges)
 		{
 			HashSet<Vertex> difference = new HashSet<Vertex>(edge.verticies);
@@ -61,7 +66,7 @@ public class Network
 				return edge;
 			}
 		}
-		throw new EdgeNotFound(x, y);
+		throw new EdgeNotFound();
 	}
 	
 	public ArrayList<Vertex> connectedVerticies(Vertex vertex)
