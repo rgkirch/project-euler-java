@@ -7,6 +7,7 @@ public class Edge {
 	HashSet<Vertex> verticies;
 	
 	public Edge(Double weight, Vertex one, Vertex two) {
+		this.verticies = new HashSet<>();
 		this.weight = weight;
 		this.verticies.add(one);
 		this.verticies.add(two);
