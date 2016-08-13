@@ -51,20 +51,20 @@ public class Network
 	public Edge getEdge(Vertex x, Vertex y) throws EdgeNotFound
 	{
 		HashMap<Vertex, HashSet<Edge>> networkData = this.networkData;
-		HashSet<Edge> edges = networkData.get(x);
-		if(edges == null)
+		if(!networkData.containsKey(x))
 		{
 			System.out.println("failed on first vertex");
-			System.out.println(edges);
 			throw new EdgeNotFound(x, y);
-		}
-		for(Edge edge : edges)
-		{
-			HashSet<Vertex> difference = new HashSet<Vertex>(edge.verticies);
-			difference.remove(x);
-			if(difference.contains(y))
+		} else {
+			HashSet<Edge> edges = networkData.get(x);
+			for(Edge edge : edges)
 			{
-				return edge;
+				HashSet<Vertex> difference = new HashSet<Vertex>(edge.verticies);
+				difference.remove(x);
+				if(difference.contains(y))
+				{
+					return edge;
+				}
 			}
 		}
 		throw new EdgeNotFound(x, y);
