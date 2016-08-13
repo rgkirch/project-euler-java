@@ -38,8 +38,12 @@ public class Network
 		StringBuilder builder = new StringBuilder();
 		for(Vertex vertex : this.networkData.keySet())
 		{
+			builder.append("vertex ");
+			builder.append(vertex);
+			builder.append(" = ");
 			builder.append(networkData.get(vertex));
 		}
+		builder.append(" ");
 		return builder.toString();
 	}
 	
@@ -53,7 +57,6 @@ public class Network
 		HashMap<Vertex, HashSet<Edge>> networkData = this.networkData;
 		if(!networkData.containsKey(x))
 		{
-			System.out.println("failed on first vertex");
 			throw new EdgeNotFound(x, y);
 		} else {
 			HashSet<Edge> edges = networkData.get(x);

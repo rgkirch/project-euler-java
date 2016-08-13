@@ -21,10 +21,16 @@ public class p107 {
 			System.out.println(network);
 			try
 			{
-				network.getEdge(new Vertex(27), new Vertex(9));
+				System.out.println(network.edgeWeight(new Vertex(27), new Vertex(9)));
 			} catch (EdgeNotFound e) {
 				System.out.println(e);
 			}
+		}
+		if(new Vertex(3).equals(new Vertex(3)))
+		{
+			System.out.println("equivalence");
+		} else {
+			System.out.println("different");
 		}
 	}
 }
