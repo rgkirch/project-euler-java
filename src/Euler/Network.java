@@ -82,4 +82,31 @@ public class Network
 		}
 		return new ArrayList<>();
 	}
+	
+	public HashSet<Edge> edges()
+	{
+		HashSet<Edge> allEdges = new HashSet<>();
+		for(HashSet<Edge> someEdges : networkData.values())
+		{
+			for(Edge edge : someEdges)
+			{
+				allEdges.add(edge);
+			}
+		}
+		return allEdges;
+	}
+	
+	public HashSet<Edge> minimumSpanningTree()
+	{
+		HashMap<Vertex, HashSet<Edge>> networkData = this.networkData;
+		HashSet<Edge> minimumSpanningTreeEdges = new HashSet<Edge>();
+		// find the edge with the least weight, will defnitely be in the end tree
+		Double minimumWeight = Double.MAX_VALUE;
+		for(Edge edge : this.edges())
+		{
+			minimumWeight = Double.min(minimumWeight, edge.weight);
+		}
+		System.out.println("minimum weight " + minimumWeight);
+		return minimumSpanningTreeEdges;
+	}
 }

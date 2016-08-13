@@ -18,19 +18,8 @@ public class p107 {
 		}
 		if(network != null)
 		{
-			System.out.println(network);
-			try
-			{
-				System.out.println(network.edgeWeight(new Vertex(27), new Vertex(9)));
-			} catch (EdgeNotFound e) {
-				System.out.println(e);
-			}
+			//System.out.println(network);
 		}
-		if(new Vertex(3).equals(new Vertex(3)))
-		{
-			System.out.println("equivalence");
-		} else {
-			System.out.println("different");
-		}
+		network.minimumSpanningTree();
 	}
 }
