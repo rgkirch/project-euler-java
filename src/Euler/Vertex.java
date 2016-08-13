@@ -1,21 +1,30 @@
 package Euler;
 
-public class Vertex {
+public class Vertex implements Comparable
+{
 	private int id;
 	
-	public Vertex(int id) {
+	public Vertex(int id)
+	{
 		this.id = id;
 	}
 
-	public int getId() {
+	public int getId()
+	{
 		return id;
 	}
-
-	public int compareTo(Vertex v) {
-		return Integer.compare(this.id, v.id);
-	}
 	
+	public int compare(Vertex one, Vertex two)
+	{
+		return one.compareTo(two);
+	}
+
 	public String toString() {
 		return String.valueOf(id);
+	}
+
+	@Override
+	public int compareTo(Object vertex) {
+		return Integer.compare(this.id, ((Vertex)vertex).id);
 	}
 }

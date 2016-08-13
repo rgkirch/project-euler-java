@@ -55,7 +55,7 @@ public class Network
 		HashSet<Edge> edges = networkData.get(x);
 		if(edges == null)
 		{
-			throw new EdgeNotFound();
+			throw new EdgeNotFound(x, y);
 		}
 		for(Edge edge : edges)
 		{
@@ -66,7 +66,7 @@ public class Network
 				return edge;
 			}
 		}
-		throw new EdgeNotFound();
+		throw new EdgeNotFound(x, y);
 	}
 	
 	public ArrayList<Vertex> connectedVerticies(Vertex vertex)

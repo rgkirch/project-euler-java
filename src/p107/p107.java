@@ -23,7 +23,7 @@ public class p107 {
 			{
 				network.getEdge(new Vertex(0), new Vertex(1));
 			} catch (EdgeNotFound e) {
-				System.out.println("edge not found");
+				System.out.println(e);
 			}
 		}
 	}
