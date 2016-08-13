@@ -21,7 +21,7 @@ public class p107 {
 			System.out.println(network);
 			try
 			{
-				network.getEdge(new Vertex(0), new Vertex(1));
+				network.getEdge(new Vertex(9), new Vertex(27));
 			} catch (EdgeNotFound e) {
 				System.out.println(e);
 			}

@@ -11,7 +11,6 @@ public class Network
 
 	public Network(int dimension, ArrayList<Double> edgeWeights)
 	{
-		System.out.println("Network constructor.");
 		this.dimension = dimension;
 		this.networkData = new HashMap<Vertex, HashSet<Edge>>();
 		for(int vertexIndex = 0; vertexIndex < dimension; ++vertexIndex)
@@ -20,10 +19,10 @@ public class Network
 			for(int i = 0; i < dimension; ++i)
 			{
 				Double weight = edgeWeights.get(vertexIndex * dimension + i);
-				if(weight != Double.NaN)
+				if(!weight.equals(Double.NaN))
 				{
 					Edge edge = new Edge(weight, vertexOne, new Vertex(i));
-					if(this.networkData.get(vertexOne) == null)
+					if(!this.networkData.containsKey(vertexOne))
 					{
 						this.networkData.put(vertexOne, new HashSet<Edge>());
 					}
@@ -55,6 +54,8 @@ public class Network
 		HashSet<Edge> edges = networkData.get(x);
 		if(edges == null)
 		{
+			System.out.println("failed on first vertex");
+			System.out.println(edges);
 			throw new EdgeNotFound(x, y);
 		}
 		for(Edge edge : edges)
