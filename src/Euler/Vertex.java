@@ -44,4 +44,5 @@ public class Vertex implements Comparable
 	public int compareTo(Object vertex) {
 		return Integer.compare(this.id, ((Vertex)vertex).id);
 	}
+	
 }

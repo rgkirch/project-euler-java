@@ -1,11 +1,11 @@
 package Euler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class Edge {
+public class Edge implements Comparable {
 	Double weight;
 	HashSet<Vertex> verticies;
 	
@@ -20,6 +20,41 @@ public class Edge {
 		ArrayList<Vertex> verticies = new ArrayList<>(this.verticies);
 		Collections.sort(verticies);
 		return "(" + weight + ", (" + verticies.get(0) + ", " + verticies.get(1) + "))";
+	}
+	
+	public static Double sum(Collection<Edge> collection)
+	{
+		Double sum = new Double(0);
+		for(Edge edge : collection)
+		{
+			sum += edge.weight;
+		}
+		return sum;
+	}
+	
+	public static Edge min(Edge left, Edge right)
+	{
+		if(left.weight <= right.weight)
+		{
+			return left;
+		} else return right;
+	}
+
+	public static Edge min(Collection<Edge> collection)
+	{
+		Edge min = null;
+		for(Edge edge : collection)
+		{
+			if(edge == null)
+			{
+				min = edge;
+			} else {
+				if(min.weight < edge.weight) {
+					min = edge;
+				}
+			}
+		}
+		return min;
 	}
 
 	@Override
@@ -51,6 +86,11 @@ public class Edge {
 		} else if (!weight.equals(other.weight))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return Double.compare(this.weight, ((Edge)o).weight);
 	}
 	
 }

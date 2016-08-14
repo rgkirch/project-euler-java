@@ -1,6 +1,7 @@
 package Euler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -8,6 +9,11 @@ public class Network
 {
 	int dimension;
 	HashMap<Vertex, HashSet<Edge>> networkData;
+	
+	public Double totalEdgeWeight()
+	{
+		return Edge.sum(this.edges());
+	}
 
 	public Network(int dimension, ArrayList<Double> edgeWeights)
 	{
@@ -83,6 +89,11 @@ public class Network
 		return new ArrayList<>();
 	}
 	
+	public HashSet<Vertex> verticies()
+	{
+		return new HashSet<>(this.networkData.keySet());
+	}
+	
 	public HashSet<Edge> edges()
 	{
 		HashSet<Edge> allEdges = new HashSet<>();
@@ -96,17 +107,33 @@ public class Network
 		return allEdges;
 	}
 	
-	public HashSet<Edge> minimumSpanningTree()
+	public HashSet<Edge> primsMinimumSpanningTree()
 	{
 		HashMap<Vertex, HashSet<Edge>> networkData = this.networkData;
-		HashSet<Edge> minimumSpanningTreeEdges = new HashSet<Edge>();
-		// find the edge with the least weight, will defnitely be in the end tree
-		Double minimumWeight = Double.MAX_VALUE;
-		for(Edge edge : this.edges())
+		HashSet<Edge> minimumSpanningTree = new HashSet<Edge>();
+		HashSet<Edge> primsFringeEdges = new HashSet<Edge>();
+		// find the edge with the least weight, will definitely be in the final tree
+		minimumSpanningTree.add(Edge.min(this.edges()));
+		return minimumSpanningTree;
+	}
+	
+	public HashSet<Edge> kruskalsMinimumSpanningTree()
+	{
+		HashSet<Edge> answer = new HashSet<>();
+		HashMap<Vertex, UpTree<Vertex>> structure = UpTree.makeUpTree(this.verticies());
+		ArrayList<Edge> listOfAllEdges = new ArrayList<>(this.edges());
+		Collections.sort(listOfAllEdges);
+		for(Edge edge : listOfAllEdges)
 		{
-			minimumWeight = Double.min(minimumWeight, edge.weight);
+			ArrayList<Vertex> verticies = new ArrayList<>(edge.verticies);
+			Vertex one = verticies.get(0);
+			Vertex two = verticies.get(1);
+			if(!structure.get(one).find().equals(structure.get(two).find()))
+			{
+				UpTree.union(structure.get(one), structure.get(two));
+				answer.add(edge);
+			}
 		}
-		System.out.println("minimum weight " + minimumWeight);
-		return minimumSpanningTreeEdges;
+		return answer;
 	}
 }

@@ -2,6 +2,7 @@ package p107;
 
 import java.io.FileNotFoundException;
 
+import Euler.Edge;
 import Euler.EdgeNotFound;
 import Euler.Network;
 import Euler.Vertex;
@@ -20,6 +21,7 @@ public class p107 {
 		{
 			//System.out.println(network);
 		}
-		network.minimumSpanningTree();
+		double minimumWeight = Edge.sum(network.kruskalsMinimumSpanningTree());
+		System.out.println(network.totalEdgeWeight() - minimumWeight);
 	}
 }
