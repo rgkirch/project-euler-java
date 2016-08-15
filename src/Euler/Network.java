@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
+// made for problem 107
 public class Network
 {
 	int dimension;
@@ -105,16 +106,6 @@ public class Network
 			}
 		}
 		return allEdges;
-	}
-	
-	public HashSet<Edge> primsMinimumSpanningTree()
-	{
-		HashMap<Vertex, HashSet<Edge>> networkData = this.networkData;
-		HashSet<Edge> minimumSpanningTree = new HashSet<Edge>();
-		HashSet<Edge> primsFringeEdges = new HashSet<Edge>();
-		// find the edge with the least weight, will definitely be in the final tree
-		minimumSpanningTree.add(Edge.min(this.edges()));
-		return minimumSpanningTree;
 	}
 	
 	public HashSet<Edge> kruskalsMinimumSpanningTree()
