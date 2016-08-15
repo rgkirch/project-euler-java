@@ -3,9 +3,7 @@ package p107;
 import java.io.FileNotFoundException;
 
 import Euler.Edge;
-import Euler.EdgeNotFound;
 import Euler.Network;
-import Euler.Vertex;
 
 public class p107 {
 	public static void main(String[] args) {

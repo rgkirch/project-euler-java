@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 public class EdgeNotFound extends Exception
 {
+	private static final long serialVersionUID = 7109139210415349528L;
 	HashSet<Vertex> verticies;
 	public EdgeNotFound(Vertex x, Vertex y)
 	{

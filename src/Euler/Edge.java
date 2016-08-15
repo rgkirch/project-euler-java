@@ -5,11 +5,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class Edge implements Comparable {
+public class Edge implements Comparable<Edge>
+{
 	Double weight;
 	HashSet<Vertex> verticies;
 	
-	public Edge(Double weight, Vertex one, Vertex two) {
+	public Edge(Double weight, Vertex one, Vertex two)
+	{
 		this.verticies = new HashSet<>();
 		this.weight = weight;
 		this.verticies.add(one);
@@ -89,8 +91,8 @@ public class Edge implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		return Double.compare(this.weight, ((Edge)o).weight);
+	public int compareTo(Edge edge) {
+		return Double.compare(this.weight, edge.weight);
 	}
 	
 }

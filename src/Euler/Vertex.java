@@ -1,6 +1,6 @@
 package Euler;
 
-public class Vertex implements Comparable
+public class Vertex implements Comparable<Vertex>
 {
 	private int id;
 
@@ -41,8 +41,8 @@ public class Vertex implements Comparable
 	}
 
 	@Override
-	public int compareTo(Object vertex) {
-		return Integer.compare(this.id, ((Vertex)vertex).id);
+	public int compareTo(Vertex vertex) {
+		return Integer.compare(this.id, vertex.id);
 	}
 	
 }

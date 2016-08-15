@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class UpTree<T> {
-	UpTree parent = null;
+	UpTree<T> parent = null;
 	T data;
 	
 	public static <T> HashMap<T, UpTree<T>> makeUpTree(Collection<T> collection)
@@ -26,7 +26,7 @@ public class UpTree<T> {
 		this.data = data;
 	}
 	
-	public UpTree find()
+	public UpTree<T> find()
 	{
 		if(this.parent == null)
 		{
