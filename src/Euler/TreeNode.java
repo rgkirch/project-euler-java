@@ -1,9 +1,10 @@
 package Euler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
-public class TreeNode
+public class TreeNode implements Comparable<TreeNode>
 {
 	HashSet<TreeNode> children = null;
 	double value;
@@ -32,10 +33,18 @@ public class TreeNode
 		} catch (IndexOutOfBoundsException e) {
 		}
 	}
+	public double maxPath()
+	{
+		double result = this.value;
+		if(!this.children.isEmpty())
+		{
+			result += Collections.max(this.children).value;
+		}
+		return result;
+	}
+	@Override
+	public int compareTo(TreeNode node)
+	{
+		return (int) Double.max(this.value, node.value);
+	}
 }
-
-/* n * (n + 1) / 2
- * (n + 1) * ((n + 1) + 1) / 2 - (n * (n + 1) / 2)
- * (n + 1) * ((n + 1) + 1) / 2 - (n * (n + 1) / 2)
- * 
- * */

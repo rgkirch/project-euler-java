@@ -24,5 +24,6 @@ public class p67
 			System.exit(1);
 			*/
 		}
+		System.out.println(treenode.maxPath());
 	}
 }
